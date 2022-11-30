@@ -5,28 +5,42 @@ package com.zipcodewilmington.looplabs;
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
  */
 public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
-    public IntegerDuplicateDeleter(Integer[] intArray) {
-        super(intArray);
-        Integer[] temp = new Integer[intArray.length];
-        int j = 0;
+    public IntegerDuplicateDeleter(Integer[] intArray) {super(intArray);}
 
-        for (int i = 0; i < intArray.length-1; i++) {
-            if(intArray[i] != intArray[i+1]){
-                temp[j++] = intArray[i];
-            }
-        } temp[j++] = intArray[intArray.length-1];
-        for (int k = 0; k < j; k++) {
-            System.out.println(temp[k]);
-        }
+    public int counter(){
+        int count = 0;
+        for (int i :array) for (int j: array) if (j == i) count++;
+        return count;
     }
 
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
+        int j = 0;
+        Integer[] temp = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != array[i+1]){
+                temp[j++] = array[i];
+            }
+        } temp[j++] = array[array.length-1];
+        for (int k = 0; k < j; k++) System.out.println(temp[k]);
         return new Integer[0];
     }
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
+//        Integer[] temp = new Integer[array.length];
+//        int j = 0;
+//
+//        for (int i = 0; i < array.length - 1; i++) {
+//            if (array[i] != array[i + 1]) {
+//                temp[j++] = array[i];
+//            }
+//        }
+//        temp[j++] = array[array.length - 1];
+//        for (int k = 0; k < j; k++) {
+//            System.out.println(temp[k]);
+//            return new Integer[0];
+//        }
         return new Integer[0];
     }
 }
