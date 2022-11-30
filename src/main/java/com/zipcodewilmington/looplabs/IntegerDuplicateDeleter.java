@@ -19,19 +19,20 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
         int numberOfEInNewArray = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (counter(array[i]) < (maxNumberOfDuplications)) {
+        for (Integer integer : array) {
+            if (counter(integer) < (maxNumberOfDuplications)) {
                 numberOfEInNewArray++;
             }
         }
         int k =0;
         Integer[] result = new Integer[numberOfEInNewArray];
-        for (int j = 0; j < array.length; j++) {
-            if (counter(array[j]) < maxNumberOfDuplications) {
-                result[k] = array[j];
+        for (Integer integer : array) {
+            if (counter(integer) < maxNumberOfDuplications) {
+                result[k] = integer;
                 k++;
             }
-        } return result;
+        }
+        return result;
     }
 
     @Override

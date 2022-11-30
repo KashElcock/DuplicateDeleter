@@ -8,27 +8,48 @@ import java.util.Objects;
  */
 public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
 
-    public StringDuplicateDeleter(String[] intArray) {super(intArray);}
-    public int counter(){
+    public StringDuplicateDeleter(String[] intArray) {
+        super(intArray);
+    }
+
+    public int counter(String input){
         int count = 0;
-        for (String i :array) for (String j: array) if (Objects.equals(j, i)) count++;
+        for (String string : array) if (Objects.equals(string, input)) count++;
         return count;
     }
 
     @Override
     public String[] removeDuplicates(int maxNumberOfDuplications) {
-        String[] temp = new String[array.length];
-        int j = 0;
-        for (int i = 0; i < array.length-1; i++) {
-                if(array[i] != array[i+1]){
-                    temp[j++] = array[i];
-                }
-            } temp[j++] = array[array.length - 1];
-        return new String[0];
+        int numberOfEInNewArray = 0;
+        for (String s : array) {
+            if (counter(s) < (maxNumberOfDuplications)) {
+                numberOfEInNewArray++;
+            }
+        }
+        int k =0;
+        String[] result = new String[numberOfEInNewArray];
+        for (String s : array) {
+            if (counter(s) < maxNumberOfDuplications) {
+                result[k] = s;
+                k++;
+            }
+        }
+        return result;
     }
 
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new String[0];
+        int numberOfEInNewArray = 0;
+        for (String value : array) {
+            if (counter(value) != (exactNumberOfDuplications)) numberOfEInNewArray++;
+        }
+        String[] result = new String[numberOfEInNewArray];
+        int k =0;
+        for (String s : array) {
+            if (counter(s) != exactNumberOfDuplications) {
+                result[k] = s;
+                k++;
+            }
+        } return result;
     }
 }
