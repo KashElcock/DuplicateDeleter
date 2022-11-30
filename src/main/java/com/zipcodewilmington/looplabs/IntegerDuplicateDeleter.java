@@ -1,5 +1,6 @@
 package com.zipcodewilmington.looplabs;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -9,40 +10,43 @@ import java.util.Objects;
 public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     public IntegerDuplicateDeleter(Integer[] intArray) {super(intArray);}
 
-    public int counter(){
+    public int counter(Integer integer){
         int count = 0;
-        for (Integer i :array) for (Integer j: array) if (Objects.equals(j, i)) count++;
+        for (Integer i : array) if (Objects.equals(i, integer)) count++;
         return count;
     }
 
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
-        int j = 0;
-        Integer[] temp = new Integer[array.length];
+        int numberOfEInNewArray = 0;
         for (int i = 0; i < array.length; i++) {
-            if(array[i] != array[i+1]){
-                temp[j++] = array[i];
+            if (counter(array[i]) < (maxNumberOfDuplications)) {
+                numberOfEInNewArray++;
             }
-        } temp[j++] = array[array.length-1];
-        for (int k = 0; k < j; k++) System.out.println(temp[k]);
-        return new Integer[0];
+        }
+        int k =0;
+        Integer[] result = new Integer[numberOfEInNewArray];
+        for (int j = 0; j < array.length; j++) {
+            if (counter(array[j]) < maxNumberOfDuplications) {
+                result[k] = array[j];
+                k++;
+            }
+        } return result;
     }
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-//        Integer[] temp = new Integer[array.length];
-//        int j = 0;
-//
-//        for (int i = 0; i < array.length - 1; i++) {
-//            if (array[i] != array[i + 1]) {
-//                temp[j++] = array[i];
-//            }
-//        }
-//        temp[j++] = array[array.length - 1];
-//        for (int k = 0; k < j; k++) {
-//            System.out.println(temp[k]);
-//            return new Integer[0];
-//        }
-        return new Integer[0];
+        int numberOfEInNewArray = 0;
+        for (Integer value : array) {
+            if (counter(value) != (exactNumberOfDuplications)) numberOfEInNewArray++;
+        }
+        Integer[] result = new Integer[numberOfEInNewArray];
+        int k =0;
+        for (Integer integer : array) {
+            if (counter(integer) != exactNumberOfDuplications) {
+                result[k] = integer;
+                k++;
+            }
+        } return result;
     }
 }
