@@ -1,5 +1,7 @@
 package com.zipcodewilmington.looplabs;
 
+import java.util.Objects;
+
 /**
  * Created by leon on 1/29/18.
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
@@ -9,7 +11,7 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     public int counter(){
         int count = 0;
-        for (int i :array) for (int j: array) if (j == i) count++;
+        for (Integer i :array) for (Integer j: array) if (Objects.equals(j, i)) count++;
         return count;
     }
 
